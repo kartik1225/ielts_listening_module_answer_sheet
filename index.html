@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IELTS Listening Module Answer Sheet</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+
+      h1 {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      th,
+      td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: center;
+      }
+
+      th {
+        background-color: #f2f2f2;
+        font-weight: bold;
+      }
+
+      input[type="text"] {
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      button {
+        margin-top: 20px;
+        padding: 10px 20px;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+      }
+
+      button:hover {
+        background-color: #45a049;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>IELTS Listening Module Answer Sheet</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Question</th>
+          <th>Answer</th>
+          <th>Is Correct</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td colspan="3">Listening</td>
+        </tr>
+        <script>
+          for (let i = 1; i <= 40; i++) {
+            document.write(
+              "<tr><td>" +
+                i +
+                '</td><td><input type="text" id="answer' +
+                i +
+                '" tabindex="' +
+                i +
+                '"></td><td><input type="checkbox" id="correct' +
+                i +
+                '" tabindex="' +
+                (i + 40) +
+                '"></td></tr>'
+            );
+          }
+        </script>
+      </tbody>
+    </table>
+    <button onclick="checkAnswers()">Check Answers</button>
+    <p id="result"></p>
+    <script>
+      function checkAnswers() {
+        let totalCorrect = 0;
+        for (let i = 1; i <= 40; i++) {
+          const isCorrect = document.getElementById("correct" + i).checked;
+          if (isCorrect) {
+            totalCorrect++;
+          }
+        }
+
+        const bandScore = calculateBandScore(totalCorrect);
+        document.getElementById("result").innerText =
+          "Total correct answers: " +
+          totalCorrect +
+          "\nBand score: " +
+          bandScore;
+      }
+
+      function calculateBandScore(correctAnswers) {
+        if (correctAnswers >= 39) return 9;
+        if (correctAnswers >= 37) return 8.5;
+        if (correctAnswers >= 35) return 8;
+        if (correctAnswers >= 32) return 7.5;
+        if (correctAnswers >= 30) return 7;
+        if (correctAnswers >= 26) return 6.5;
+        if (correctAnswers >= 23) return 6;
+        if (correctAnswers >= 18) return 5.5;
+        if (correctAnswers >= 16) return 5;
+        if (correctAnswers >= 13) return 4.5;
+        if (correctAnswers >= 10) return 4;
+        if (correctAnswers >= 8) return 3.5;
+        if (correctAnswers >= 6) return 3;
+        if (correctAnswers >= 4) return 2.5;
+        if (correctAnswers >= 2) return 2;
+        if (correctAnswers >= 1) return 1.5;
+        return 1;
+      }
+    </script>
+  </body>
+</html>
